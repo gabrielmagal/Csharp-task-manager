@@ -1,0 +1,45 @@
+﻿@page "{id}"
+@using TaskManagerDomain
+@model EditModel
+@{
+    ViewData["Title"] = "Edição de Tarefa";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Tarefa.Id" />
+
+    <div class="form-group">
+        <label for="Titulo">Título</label>
+        <input type="text" class="form-control" id="Titulo" asp-for="Tarefa.Titulo" />
+        <span asp-validation-for="Tarefa.Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Descricao">Descrição</label>
+        <input type="text" class="form-control" id="Descricao" asp-for="Tarefa.Descricao" />
+        <span asp-validation-for="Tarefa.Descricao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Prioridade">Prioridade</label>
+        <select class="form-control" id="Prioridade" asp-for="Tarefa.Prioridade" asp-items="Html.GetEnumSelectList<Prioridade>()"></select>
+        <span asp-validation-for="Tarefa.Prioridade" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="DataLimite">Data Limite</label>
+        <input type="date" class="form-control" id="DataLimite" asp-for="Tarefa.DataLimite" />
+        <span asp-validation-for="Tarefa.DataLimite" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Status">Status</label>
+        <select class="form-control" id="Status" asp-for="Tarefa.Status" asp-items="Html.GetEnumSelectList<Status>()"></select>
+        <span asp-validation-for="Tarefa.Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<a asp-page="Index">Voltar para lista</a>
